@@ -6,11 +6,11 @@ w/ 8fetch or improvements id love to be contacted on tiktok.
 
 On Arch systems:
 
-´git clone https://github.com/quinnyfoco-design/8fetch.git
+``git clone https://github.com/quinnyfoco-design/8fetch.git
 
 cd 8fetch
 
-makepkg -si
+makepkg -si``
 
 On other:
 
