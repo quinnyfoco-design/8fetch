@@ -25,7 +25,7 @@ git clone https://github.com/quinnyfoco-design/8fetch.git
 cd 8fetch
 ```
 ```
-sudo install -Dm755 8fetch /usr/local/bin/8fetch
+sudo install -Dm755 myfetch /usr/local/bin/8fetch
 ```
 
 **RUNNING**
