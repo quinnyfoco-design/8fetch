@@ -8,9 +8,11 @@ On Arch systems:
 
 ```bash
 git clone https://github.com/quinnyfoco-design/8fetch.git
-
+```
+```
 cd 8fetch
-
+```
+```
 makepkg -si
 ```
 
@@ -18,9 +20,11 @@ On other:
 
 ```bash
 git clone https://github.com/quinnyfoco-design/8fetch.git
-
+```
+```
 cd 8fetch
-
+```
+```
 sudo install -Dm755 8fetch /usr/local/bin/8fetch
 ```
 
@@ -28,5 +32,5 @@ sudo install -Dm755 8fetch /usr/local/bin/8fetch
 
 On *all* systems:
 ```bash
-'8fetch'
+8fetch
 ```
