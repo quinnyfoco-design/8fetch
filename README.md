@@ -34,3 +34,7 @@ On *all* systems:
 ```bash
 8fetch
 ```
+
+**KNOWN BUGS**
+
+-Sizing issues
