@@ -10,7 +10,7 @@ On Arch systems:
 
 cd 8fetch
 
-makepkg -si```
+makepkg -si´´´
 
 On other:
 
