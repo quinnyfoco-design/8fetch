@@ -1,0 +1,110 @@
+#!/usr/bin/env bash
+# Colors
+PURPLE='\033[35m'
+RESET='\033[0m'
+
+# === Gather system info ===
+os="EndeavourOS $(cat /etc/os-release 2>/dev/null | grep '^VERSION=' | cut -d'"' -f2 || echo 'rolling')"
+kernel="$(uname -r)"
+device="ThinkPad E570"
+uptime="$(uptime -p | sed 's/up //')"
+terminal="bash $(bash --version | head -n1 | cut -d' ' -f4 | tr -d ',')"
+res_output=$(xrandr --query 2>/dev/null)
+display_res=$(echo "$res_output" | grep " primary" | grep -oP '\d+x\d+' || echo "unknown")
+display_res2=$(echo "$res_output" | grep " connected" | grep -v " primary" | grep -oP '\d+x\d+' | head -n1 || echo "")
+cpu_info="$(lscpu | grep "Model name:" | cut -d':' -f2 | xargs) @ $(lscpu | grep "CPU MHz:" | awk '{printf "%.1f GHz", $3/1000}' || echo "unknown")"
+gpu_info="Intel (integrated)"
+ram_used=$(free -h | awk '/^Mem:/ {print $3}')
+ram_total=$(free -h | awk '/^Mem:/ {print $2}')
+ram="$ram_used / $ram_total"
+
+# === Build colored lines ===
+lines=()
+lines+=("${PURPLE}OS:${RESET} $os")
+lines+=("${PURPLE}Kernel:${RESET} Linux $kernel")
+lines+=("${PURPLE}Device:${RESET} $device")
+lines+=("${PURPLE}Uptime:${RESET} $uptime")
+lines+=("${PURPLE}Terminal:${RESET} $terminal")
+lines+=("${PURPLE}Display-res:${RESET} $display_res")
+[ -n "$display_res2" ] && lines+=("${PURPLE}Display-res2:${RESET} $display_res2")
+lines+=("${PURPLE}CPU-info:${RESET} $cpu_info")
+lines+=("${PURPLE}GPU-info:${RESET} $gpu_info")
+lines+=("${PURPLE}Ram:${RESET} $ram")
+
+# === Box sizing (strip colors correctly for width) ===
+max_len=0
+for line in "${lines[@]}"; do
+    # Strip ANSI escapes - need to handle both \033 and \e formats
+    clean=$(echo -e "$line" | sed 's/\x1b\[[0-9;]*m//g')
+    len=${#clean}
+    (( len > max_len )) && max_len=$len
+done
+
+# Box structure: │ <space> content <padding> <space> │
+# So border needs to be: content_width + 2 spaces
+box_content_width=$max_len
+box_inner_width=$((box_content_width + 2))
+border=$(printf '─%.0s' $(seq 1 $box_inner_width))
+
+# === ASCII ===
+read -r -d '' ascii <<'EOF'
+                   -`
+                  .o+`
+                 `ooo/
+                `+oooo:
+               `+oooooo:
+               -+oooooo+:
+             `/:-:++oooo+:
+            `/++++/+++++++:
+           `/++++++++++++++:
+          `/+++ooooooooooooo/`
+         ./ooosssso++osssssso+`
+        .oossssso-````/ossssss+`
+       -osssssso.      :ssssssso.
+      :osssssss/        osssso+++.
+     /ossssssss/        +ssssooo/-
+   `/ossssso+/:-        -:/+osssso+-
+  `+sso+:-`                 `.-/+oso:
+ `++:.                           `-/+/
+ `                                 `
+EOF
+mapfile -t ascii_arr <<< "$ascii"
+
+# === Print side-by-side ===
+box_height=$((${#lines[@]} + 2))  # +2 for top and bottom borders
+
+for (( i=0; i < ${#ascii_arr[@]}; i++ )); do
+    # Left side: ASCII
+    left="${ascii_arr[i]}"
+
+    # Right side: box content (only for the first box_height lines)
+    right=""
+    if (( i < box_height )); then
+        if (( i == 0 )); then
+            right="╭${border}╮"
+        elif (( i == box_height - 1 )); then
+            right="╰${border}╯"
+        else
+            idx=$((i - 1))
+            content="${lines[idx]}"
+            # Strip colors for length calculation - use same method as above
+            clean_content=$(echo -e "$content" | sed 's/\x1b\[[0-9;]*m//g')
+            content_len=${#clean_content}
+            # Total padding needed after content
+            total_padding=$((box_content_width - content_len))
+            # Build the line character by character to ensure alignment
+            right="│ "
+            right+="${content}"
+            for (( p=0; p<total_padding; p++ )); do
+                right+=" "
+            done
+            right+=" │"
+        fi
+    fi
+
+    # Combine and print the full line
+    printf "%-40s" "$left"
+    echo -en "$right"
+    echo
+done
+echo ""
