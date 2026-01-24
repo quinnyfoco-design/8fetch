@@ -13,5 +13,5 @@ sha256sums=('7d5ce46a941bd95cc8b7828233ff7b12a2e9ff41c2c501b7e21d9823acfdecef')
 
 package() {
     cd "${srcdir}/${pkgname}-${pkgver}"
-    install -Dm755 8fetch "${pkgdir}/usr/bin/8fetch"
+    install -Dm755 myfetch "${pkgdir}/usr/bin/8fetch"
 }
