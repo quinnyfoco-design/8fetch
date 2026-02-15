@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-ORANGE='\033[38;5;208m'
-BLACK='\033[30m'
-BLUE='\033[34m'
-PURPLE='\033[35m'
-RESET='\033[0m'
+ORANGE=$'\033[38;5;208m'
+BLACK=$'\033[30m'
+BLUE=$'\033[34m'
+PURPLE=$'\033[35m'
+RESET=$'\033[0m'
 
 os_name=$(cat /etc/os-release 2>/dev/null | grep '^NAME=' | cut -d'"' -f2 || echo 'Linux')
 os_version=$(cat /etc/os-release 2>/dev/null | grep '^VERSION=' | cut -d'"' -f2 || echo '')
