@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
-# Colors
 PURPLE='\033[35m'
 RESET='\033[0m'
 
-# === Gather system info ===
 os_name=$(cat /etc/os-release 2>/dev/null | grep '^NAME=' | cut -d'"' -f2 || echo 'Linux')
 os_version=$(cat /etc/os-release 2>/dev/null | grep '^VERSION=' | cut -d'"' -f2 || echo '')
 os="$os_name${os_version:+ $os_version}"
@@ -20,7 +18,6 @@ ram_used=$(free -h | awk '/^Mem:/ {print $3}')
 ram_total=$(free -h | awk '/^Mem:/ {print $2}')
 ram="$ram_used / $ram_total"
 
-# === Build colored lines ===
 lines=()
 lines+=("${PURPLE}OS:${RESET} $os")
 lines+=("${PURPLE}Kernel:${RESET} Linux $kernel")
@@ -33,7 +30,6 @@ lines+=("${PURPLE}CPU-info:${RESET} $cpu_info")
 lines+=("${PURPLE}GPU-info:${RESET} $gpu_info")
 lines+=("${PURPLE}Ram:${RESET} $ram")
 
-# === Box sizing (strip colors correctly for width) ===
 max_len=0
 for line in "${lines[@]}"; do
     # Strip ANSI escapes - need to handle both \033 and \e formats
@@ -42,18 +38,13 @@ for line in "${lines[@]}"; do
     (( len > max_len )) && max_len=$len
 done
 
-# Box structure: │ <space> content <padding> <space> │
-# So border needs to be: content_width + 2 spaces
 box_content_width=$max_len
 box_inner_width=$((box_content_width + 2))
 border=$(printf '─%.0s' $(seq 1 $box_inner_width))
 
-# === ASCII ===
-# === Detect distro for ASCII ===
 distro_id=$(cat /etc/os-release 2>/dev/null | grep '^ID=' | cut -d'=' -f2 | tr -d '"')
 distro_base=$(cat /etc/os-release 2>/dev/null | grep '^ID_LIKE=' | cut -d'=' -f2 | tr -d '"')
 
-# === ASCII selection ===
 case "$distro_id" in
     arch|endeavouros|manjaro|garuda)
         read -r -d '' ascii <<'EOF'
@@ -256,7 +247,7 @@ EOF
 
 EOF
                 ;;
-            *fedora*|*rhel fedora*)
+            *fedora*|*rhelfedora*)
                 read -r -d '' ascii <<'EOF'
 
              ###########             
