@@ -45,6 +45,32 @@ border=$(printf '─%.0s' $(seq 1 $box_inner_width))
 distro_id=$(cat /etc/os-release 2>/dev/null | grep '^ID=' | cut -d'=' -f2 | tr -d '"')
 distro_base=$(cat /etc/os-release 2>/dev/null | grep '^ID_LIKE=' | cut -d'=' -f2 | tr -d '"')
 
+# proxmox detection
+if command -v pveversion >/dev/null 2>&1; then
+    distro_id="pve"
+    distro_base="debian"
+fi
+
+# asciis
+
+case "$distro_id" in
+    pve)
+        read -r -d '' ascii <<'EOF'
+    @@@@.      @@@@           
+ +++.@@@@@   @@@@@.+++        
+.+++++ @@@@@@@@@ +++++.       
+  ++++++ @@@@@ ++++++         
+    +++++..@..+++++           
+      +++++ +++++.            
+   .+++++ @@@ +++++.          
+  +++++. @@@@@ .+++++         
+=+++++ @@@@@@@@@ ++++++       
+ ... @@@@@   @@@@@  ..        
+    @@@@       @@@@          
+EOF
+        ;;
+esac
+
 case "$distro_id" in
     arch|endeavouros|manjaro|garuda)
         read -r -d '' ascii <<'EOF'
