@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+ORANGE='\033[38;5;208m'
+BLACK='\033[30m'
 PURPLE='\033[35m'
 RESET='\033[0m'
 
@@ -60,18 +62,18 @@ fi
 
 case "$distro_id" in
     pve)
-        read -r -d '' ascii <<'EOF'
-    @@@@.      @@@@           
- +++.@@@@@   @@@@@.+++        
-.+++++ @@@@@@@@@ +++++.       
-  ++++++ @@@@@ ++++++         
-    +++++..@..+++++           
-      +++++ +++++.            
-   .+++++ @@@ +++++.          
-  +++++. @@@@@ .+++++         
-=+++++ @@@@@@@@@ ++++++       
- ... @@@@@   @@@@@  ..        
-    @@@@       @@@@          
+        read -r -d '' ascii <<"EOF"
+    ${BLACK}@@@@.      @@@@${RESET}           
+ ${ORANGE}+++.${BLACK}@@@@@   @@@@@${ORANGE}.+++${RESET}        
+${ORANGE}.+++++ ${BLACK}@@@@@@@@@ ${ORANGE}+++++.${RESET}       
+  ${ORANGE}++++++ ${BLACK}@@@@@ ${ORANGE}++++++${RESET}         
+    ${ORANGE}+++++..${BLACK}@${ORANGE}..+++++${RESET}           
+      ${ORANGE}+++++ +++++.${RESET}            
+   ${ORANGE}.+++++ ${BLACK}@@@ ${ORANGE}+++++.${RESET}          
+  ${ORANGE}+++++. ${BLACK}@@@@@ ${ORANGE}.+++++${RESET}         
+${ORANGE}=+++++ ${BLACK}@@@@@@@@@ ${ORANGE}++++++${RESET}       
+ ${ORANGE}... ${BLACK}@@@@@   @@@@@  ${ORANGE}..${RESET}        
+    ${BLACK}@@@@       @@@@${RESET}          
 EOF
         ;;
     arch|endeavouros|manjaro|garuda)
