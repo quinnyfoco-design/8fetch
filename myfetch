@@ -256,7 +256,7 @@ EOF
 
 EOF
                 ;;
-            *fedora*)
+            *fedora*|*rhel fedora*)
                 read -r -d '' ascii <<'EOF'
 
              ###########             
