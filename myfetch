@@ -51,6 +51,11 @@ if command -v pveversion >/dev/null 2>&1; then
     distro_base="debian"
 fi
 
+if [ "$distro_id" = "pve" ]; then
+    os_name="Proxmox VE"
+    os="$os_name"
+fi
+
 # asciis
 
 case "$distro_id" in
