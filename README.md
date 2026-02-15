@@ -36,6 +36,7 @@ On *all* systems:
 ```
 
 **UPDATING**
+
 As easy as installing.
 
 On Arch systems:
