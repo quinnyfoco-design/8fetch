@@ -69,9 +69,6 @@ case "$distro_id" in
     @@@@       @@@@          
 EOF
         ;;
-esac
-
-case "$distro_id" in
     arch|endeavouros|manjaro|garuda)
         read -r -d '' ascii <<'EOF'
                    -`
