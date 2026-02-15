@@ -35,6 +35,33 @@ On *all* systems:
 8fetch
 ```
 
+**UPDATING**
+As easy as installing.
+
+On Arch systems:
+
+```bash
+cd 8fetch
+```
+```
+git pull
+```
+```
+makepkg -si
+```
+
+On other:
+
+```bash
+cd 8fetch
+```
+```
+git pull
+```
+```
+sudo install -Dm755 myfetch /usr/local/bin/8fetch
+```
+
 **KNOWN BUGS**
 
 -Sizing issues
