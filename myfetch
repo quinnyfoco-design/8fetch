@@ -63,7 +63,7 @@ fi
 
 case "$distro_id" in
     pve)
-        read -r -d '' ascii <<"EOF"
+        read -r -d '' ascii <<'EOF'
     ${BLACK}@@@@.      @@@@${RESET}           
  ${ORANGE}+++.${BLACK}@@@@@   @@@@@${ORANGE}.+++${RESET}        
 ${ORANGE}.+++++ ${BLACK}@@@@@@@@@ ${ORANGE}+++++.${RESET}       
@@ -78,26 +78,26 @@ ${ORANGE}=+++++ ${BLACK}@@@@@@@@@ ${ORANGE}++++++${RESET}
 EOF
         ;;
     arch|endeavouros|manjaro|garuda)
-        read -r -d '' ascii <<"EOF"
-                   ${BLUE}-`${RESET}
-                  ${BLUE}.o+`${RESET}
-                 ${BLUE}`ooo/${RESET}
+        read -r -d '' ascii <<'EOF'
+                   ${BLUE}-${RESET}
+                  ${BLUE}.o+${RESET}
+                 ${BLUE}ooo${RESET}
                 ${BLUE}.+oooo:${RESET}
-               ${BLUE}`+oooooo:${RESET}
+               ${BLUE}+oooooo:${RESET}
                ${BLUE}-+oooooo+:${RESET}
-             ${BLUE}`/:-:++oooo+:${RESET}
-            ${BLUE}`/++++/+++++++:${RESET}
-           ${BLUE}`/++++++++++++++:${RESET}
-          ${BLUE}`/+++ooooooooooooo/`${RESET}
-         ${BLUE}./ooosssso++osssssso+`${RESET}
-        ${BLUE}.oossssso-````/ossssss+`${RESET}
+             ${BLUE}:-:++oooo+:${RESET}
+             ${BLUE}-++++/+++++++:${RESET}
+           ${BLUE} /++++++++++++++:${RESET}
+          ${BLUE} /+++ooooooooooooo/${RESET}
+         ${BLUE}./ooosssso++osssssso+${RESET}
+        ${BLUE}.oossssso-    /ossssss+${RESET}
        ${BLUE}-osssssso.      :ssssssso.${RESET}
       ${BLUE}:osssssss/        osssso+++.${RESET}
      ${BLUE}/ossssssss/        +ssssooo/-${RESET}
-   ${BLUE}`/ossssso+/:-        -:/+osssso+-${RESET}
-  ${BLUE}`+sso+:-`                 `.-/+oso:${RESET}
- ${BLUE}`++:.                           `-/+/${RESET}
- ${BLUE}.`                                 `${RESET}
+   ${BLUE} /ossssso+/:-        -:/+osssso+-${RESET}
+  ${BLUE} +sso+:-                  .-/+oso:${RESET}
+ ${BLUE} ++:.                           -/+/${RESET}
+ ${BLUE}.                                   ${RESET}
 
 EOF
         ;;
