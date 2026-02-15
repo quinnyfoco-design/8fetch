@@ -64,31 +64,31 @@ fi
 case "$distro_id" in
     pve)
         read -r -d '' ascii <<EOF
-    ${BLACK}@@@@.      @@@@${RESET}           
+    ${BLACK}@@@@.      @@@@${RESET}                             
  ${ORANGE}+++.${BLACK}@@@@@   @@@@@${ORANGE}.+++${RESET}        
 ${ORANGE}.+++++ ${BLACK}@@@@@@@@@ ${ORANGE}+++++.${RESET}       
   ${ORANGE}++++++ ${BLACK}@@@@@ ${ORANGE}++++++${RESET}         
     ${ORANGE}+++++..${BLACK}@${ORANGE}..+++++${RESET}           
-      ${ORANGE}+++++ +++++.${RESET}            
+      ${ORANGE}+++++ +++++.${RESET}                             
    ${ORANGE}.+++++ ${BLACK}@@@ ${ORANGE}+++++.${RESET}          
   ${ORANGE}+++++. ${BLACK}@@@@@ ${ORANGE}.+++++${RESET}         
 ${ORANGE}=+++++ ${BLACK}@@@@@@@@@ ${ORANGE}++++++${RESET}       
  ${ORANGE}... ${BLACK}@@@@@   @@@@@  ${ORANGE}..${RESET}        
-    ${BLACK}@@@@       @@@@${RESET}          
+    ${BLACK}@@@@       @@@@${RESET}                             
 EOF
         ;;
     arch|endeavouros|manjaro|garuda)
         read -r -d '' ascii <<EOF
-                   ${BLUE}-${RESET}
-                  ${BLUE}.o+${RESET}
-                 ${BLUE}ooo${RESET}
-                ${BLUE}.+oooo:${RESET}
-               ${BLUE}+oooooo:${RESET}
-               ${BLUE}-+oooooo+:${RESET}
-             ${BLUE}:-:++oooo+:${RESET}
-             ${BLUE}-++++/+++++++:${RESET}
-           ${BLUE} /++++++++++++++:${RESET}
-          ${BLUE} /+++ooooooooooooo/${RESET}
+                   ${BLUE}-${RESET}                   
+                  ${BLUE}.o+${RESET}                  
+                 ${BLUE}ooo${RESET}                   
+                ${BLUE}.+oooo:${RESET}                
+               ${BLUE}+oooooo:${RESET}                
+               ${BLUE}-+oooooo+:${RESET}              
+             ${BLUE}:-:++oooo+:${RESET}               
+             ${BLUE}-++++/+++++++:${RESET}            
+           ${BLUE} /++++++++++++++:${RESET}           
+          ${BLUE} /+++ooooooooooooo/${RESET}          
          ${BLUE}./ooosssso++osssssso+${RESET}         
         ${BLUE}.oossssso-    /ossssss+${RESET}        
        ${BLUE}-osssssso.      :ssssssso.${RESET}
