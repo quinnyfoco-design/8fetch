@@ -79,7 +79,7 @@ EOF
         ;;
     arch|endeavouros|manjaro|garuda)
         read -r -d '' ascii <<EOF
-                   ${BLUE}-${RESET}                   
+                   ${BLUE}-${RESET}                          
                   ${BLUE}.o+${RESET}                  
                  ${BLUE}ooo${RESET}                   
                 ${BLUE}.+oooo:${RESET}                
