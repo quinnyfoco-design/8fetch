@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 ORANGE='\033[38;5;208m'
 BLACK='\033[30m'
+BLUE='\003[34m'
 PURPLE='\033[35m'
 RESET='\033[0m'
 
@@ -77,26 +78,26 @@ ${ORANGE}=+++++ ${BLACK}@@@@@@@@@ ${ORANGE}++++++${RESET}
 EOF
         ;;
     arch|endeavouros|manjaro|garuda)
-        read -r -d '' ascii <<'EOF'
-                   -`
-                  .o+`
-                 `ooo/
-                `+oooo:
-               `+oooooo:
-               -+oooooo+:
-             `/:-:++oooo+:
-            `/++++/+++++++:
-           `/++++++++++++++:
-          `/+++ooooooooooooo/`
-         ./ooosssso++osssssso+`
-        .oossssso-````/ossssss+`
-       -osssssso.      :ssssssso.
-      :osssssss/        osssso+++.
-     /ossssssss/        +ssssooo/-
-   `/ossssso+/:-        -:/+osssso+-
-  `+sso+:-`                 `.-/+oso:
- `++:.                           `-/+/
- .`                                 `
+        read -r -d '' ascii <<"EOF"
+                   ${BLUE}-`${RESET}
+                  ${BLUE}.o+`${RESET}
+                 ${BLUE}`ooo/${RESET}
+                ${BLUE}.+oooo:${RESET}
+               ${BLUE}`+oooooo:${RESET}
+               ${BLUE}-+oooooo+:${RESET}
+             ${BLUE}`/:-:++oooo+:${RESET}
+            ${BLUE}`/++++/+++++++:${RESET}
+           ${BLUE}`/++++++++++++++:${RESET}
+          ${BLUE}`/+++ooooooooooooo/`${RESET}
+         ${BLUE}./ooosssso++osssssso+`${RESET}
+        ${BLUE}.oossssso-````/ossssss+`${RESET}
+       ${BLUE}-osssssso.      :ssssssso.${RESET}
+      ${BLUE}:osssssss/        osssso+++.${RESET}
+     ${BLUE}/ossssssss/        +ssssooo/-${RESET}
+   ${BLUE}`/ossssso+/:-        -:/+osssso+-${RESET}
+  ${BLUE}`+sso+:-`                 `.-/+oso:${RESET}
+ ${BLUE}`++:.                           `-/+/${RESET}
+ ${BLUE}.`                                 `${RESET}
 
 EOF
         ;;
