@@ -89,8 +89,8 @@ EOF
              ${BLUE}-++++/+++++++:${RESET}
            ${BLUE} /++++++++++++++:${RESET}
           ${BLUE} /+++ooooooooooooo/${RESET}
-         ${BLUE}./ooosssso++osssssso+${RESET}
-        ${BLUE}.oossssso-    /ossssss+${RESET}
+         ${BLUE}./ooosssso++osssssso+${RESET}         
+        ${BLUE}.oossssso-    /ossssss+${RESET}        
        ${BLUE}-osssssso.      :ssssssso.${RESET}
       ${BLUE}:osssssss/        osssso+++.${RESET}
      ${BLUE}/ossssssss/        +ssssooo/-${RESET}
