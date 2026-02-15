@@ -353,7 +353,6 @@ for (( i=0; i < ${#ascii_arr[@]}; i++ )); do
             content_len=${#clean_content}
             # Total padding needed after content
             total_padding=$((box_content_width - content_len))
-            # Build the line character by character to ensure alignment
             right="│ "
             right+="${content}"
             for (( p=0; p<total_padding; p++ )); do
@@ -363,7 +362,6 @@ for (( i=0; i < ${#ascii_arr[@]}; i++ )); do
         fi
     fi
 
-    # Combine and print the full line
     printf "%-40s" "$left"
     echo -en "$right"
     echo
