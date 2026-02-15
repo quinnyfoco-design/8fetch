@@ -48,7 +48,7 @@ distro_base=$(cat /etc/os-release 2>/dev/null | grep '^ID_LIKE=' | cut -d'=' -f2
 # proxmox detection
 if command -v pveversion >/dev/null 2>&1; then
     distro_id="pve"
-    distro_base="pve"
+    distro_base="debian"
 fi
 
 # asciis
