@@ -64,7 +64,8 @@ fi
 case "$distro_id" in
     pve)
         read -r -d '' ascii <<EOF
-                                                                          
+
+
    @@@@   @@@@             
 ++++ @@@@@@@ ++++          
   ++++ @@@ ++++            
@@ -73,7 +74,8 @@ case "$distro_id" in
  ++++ @@@@@ ++++           
 +++ @@@@ @@@@ +++          
    @@@     @@@             
-                                                                
+
+
 EOF
         ;;
     arch|endeavouros|manjaro|garuda)
