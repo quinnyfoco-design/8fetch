@@ -63,7 +63,7 @@ fi
 
 case "$distro_id" in
     pve)
-        read -r -d '' ascii <<"EOF"
+        read -r -d '' ascii <<EOF
     ${BLACK}@@@@.      @@@@${RESET}           
  ${ORANGE}+++.${BLACK}@@@@@   @@@@@${ORANGE}.+++${RESET}        
 ${ORANGE}.+++++ ${BLACK}@@@@@@@@@ ${ORANGE}+++++.${RESET}       
@@ -78,7 +78,7 @@ ${ORANGE}=+++++ ${BLACK}@@@@@@@@@ ${ORANGE}++++++${RESET}
 EOF
         ;;
     arch|endeavouros|manjaro|garuda)
-        read -r -d '' ascii <<"EOF"
+        read -r -d '' ascii <<EOF
                    ${BLUE}-`${RESET}
                   ${BLUE}.o+`${RESET}
                  ${BLUE}`ooo/${RESET}
