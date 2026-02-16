@@ -312,6 +312,7 @@ EOF
         esac
         ;;
 esac
+fi
 
 mapfile -t ascii_arr <<< "$ascii"
 # === Print side-by-side ===
