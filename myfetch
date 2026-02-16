@@ -70,7 +70,7 @@ distro_base=$(cat /etc/os-release 2>/dev/null | grep '^ID_LIKE=' | cut -d'=' -f2
 
 # === ASCII selection ===
 if [ -n "$prox_os" ]; then
-    read -r -d '' ascii <<'EOF'
+read -r -d '' ascii <<'EOF'
              @@@@   @@@@
           ++++ @@@@@@@ ++++
             ++++ @@@ ++++
