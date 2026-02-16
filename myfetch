@@ -3,10 +3,20 @@
 PURPLE='\033[35m'
 RESET='\033[0m'
 
+prox_os=""
+if command -v pveversion >/dev/null 2>& 1; then
+   ver=$(pveversion | head -n1 | cut -d'/' -f2 | cut -d'-' -f1)
+   prox_os="Proxmox VE ${ver:+ $ver}"
+fi
+
 # === Gather system info ===
-os_name=$(cat /etc/os-release 2>/dev/null | grep '^NAME=' | cut -d'"' -f2 || echo 'Linux')
-os_version=$(cat /etc/os-release 2>/dev/null | grep '^VERSION=' | cut -d'"' -f2 || echo '')
-os="$os_name${os_version:+ $os_version}"
+if [ -n "$prox_os" ]; then
+    os="$prox_os"
+else
+    os_name=$(grep '^NAME=' /etc/os-release 2>/dev/null | cut -d'"' -f2 || echo 'Linux')
+    os_version=$(grep '^VERSION=' /etc/os-release 2>/dev/null | cut -d'"' -f2 || echo '')
+    os="$os_name${os_version:+ $os_version}"
+fi
 kernel="$(uname -r)"
 device="$(cat /sys/devices/virtual/dmi/id/product_name 2>/dev/null || echo 'Unknown')"
 uptime="$(uptime -p | sed 's/up //')"
@@ -72,6 +82,9 @@ if [ -n "$prox_os" ]; then
 
 EOF
 else
+    distro_id=$(grep '^ID=' /etc/os-release 2>/dev/null | cut -d'=' -f2 | tr -d '"')
+    distro_base=$(grep '^ID_LIKE=' /etc/os-release 2>/dev/null | cut -d'=' -f2 | tr -d '"')
+
 case "$distro_id" in
     arch|endeavouros|manjaro|garuda)
         read -r -d '' ascii <<'EOF'
