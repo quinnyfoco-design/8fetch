@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
-ORANGE=$'\033[38;5;208m'
-BLACK=$'\033[30m'
-BLUE=$'\033[34m'
-PURPLE=$'\033[35m'
-RESET=$'\033[0m'
+# Colors
+PURPLE='\033[35m'
+RESET='\033[0m'
 
+# === Gather system info ===
 os_name=$(cat /etc/os-release 2>/dev/null | grep '^NAME=' | cut -d'"' -f2 || echo 'Linux')
 os_version=$(cat /etc/os-release 2>/dev/null | grep '^VERSION=' | cut -d'"' -f2 || echo '')
 os="$os_name${os_version:+ $os_version}"
@@ -21,6 +20,7 @@ ram_used=$(free -h | awk '/^Mem:/ {print $3}')
 ram_total=$(free -h | awk '/^Mem:/ {print $2}')
 ram="$ram_used / $ram_total"
 
+# === Build colored lines ===
 lines=()
 lines+=("${PURPLE}OS:${RESET} $os")
 lines+=("${PURPLE}Kernel:${RESET} Linux $kernel")
@@ -33,6 +33,7 @@ lines+=("${PURPLE}CPU-info:${RESET} $cpu_info")
 lines+=("${PURPLE}GPU-info:${RESET} $gpu_info")
 lines+=("${PURPLE}Ram:${RESET} $ram")
 
+# === Box sizing (strip colors correctly for width) ===
 max_len=0
 for line in "${lines[@]}"; do
     # Strip ANSI escapes - need to handle both \033 and \e formats
@@ -41,61 +42,40 @@ for line in "${lines[@]}"; do
     (( len > max_len )) && max_len=$len
 done
 
+# Box structure: │ <space> content <padding> <space> │
+# So border needs to be: content_width + 2 spaces
 box_content_width=$max_len
 box_inner_width=$((box_content_width + 2))
 border=$(printf '─%.0s' $(seq 1 $box_inner_width))
 
+# === ASCII ===
+# === Detect distro for ASCII ===
 distro_id=$(cat /etc/os-release 2>/dev/null | grep '^ID=' | cut -d'=' -f2 | tr -d '"')
 distro_base=$(cat /etc/os-release 2>/dev/null | grep '^ID_LIKE=' | cut -d'=' -f2 | tr -d '"')
 
-# proxmox detection
-if command -v pveversion >/dev/null 2>&1; then
-    distro_id="pve"
-    distro_base="debian"
-fi
-
-if [ "$distro_id" = "pve" ]; then
-    os_name="Proxmox VE"
-    os="$os_name"
-fi
-
-# asciis
-
+# === ASCII selection ===
 case "$distro_id" in
-    pve)
-        read -r -d '' ascii <<EOF                                      
-                @@@@     @@@@                
-            +++++ @@@@ @@@@ +++++            
-              +++++@@@@@@@+++++              
-               +++++ @@@ +++++               
-                 +++++ +++++                 
-               +++++ @@@ +++++               
-              ++++ @@@@@@@=++++              
-            +++++ @@@@ @@@@ +++++            
-                @@@@     @@@@                
-EOF
-        ;;
     arch|endeavouros|manjaro|garuda)
-        read -r -d '' ascii <<EOF
-                   ${BLUE}-${RESET}                          
-                  ${BLUE}.o+${RESET}                  
-                 ${BLUE}ooo${RESET}                   
-                ${BLUE}.+oooo:${RESET}                
-               ${BLUE}+oooooo:${RESET}                
-               ${BLUE}-+oooooo+:${RESET}              
-             ${BLUE}:-:++oooo+:${RESET}               
-             ${BLUE}-++++/+++++++:${RESET}            
-           ${BLUE} /++++++++++++++:${RESET}           
-          ${BLUE} /+++ooooooooooooo/${RESET}          
-         ${BLUE}./ooosssso++osssssso+${RESET}         
-        ${BLUE}.oossssso-    /ossssss+${RESET}        
-       ${BLUE}-osssssso.      :ssssssso.${RESET}
-      ${BLUE}:osssssss/        osssso+++.${RESET}
-     ${BLUE}/ossssssss/        +ssssooo/-${RESET}
-   ${BLUE} /ossssso+/:-        -:/+osssso+-${RESET}
-  ${BLUE} +sso+:-                  .-/+oso:${RESET}
- ${BLUE} ++:.                           -/+/${RESET}
- ${BLUE}.                                   ${RESET}
+        read -r -d '' ascii <<'EOF'
+                   -`
+                  .o+`
+                 `ooo/
+                `+oooo:
+               `+oooooo:
+               -+oooooo+:
+             `/:-:++oooo+:
+            `/++++/+++++++:
+           `/++++++++++++++:
+          `/+++ooooooooooooo/`
+         ./ooosssso++osssssso+`
+        .oossssso-````/ossssss+`
+       -osssssso.      :ssssssso.
+      :osssssss/        osssso+++.
+     /ossssssss/        +ssssooo/-
+   `/ossssso+/:-        -:/+osssso+-
+  `+sso+:-`                 `.-/+oso:
+ `++:.                           `-/+/
+ .`                                 `
 
 EOF
         ;;
@@ -276,32 +256,6 @@ EOF
 
 EOF
                 ;;
-            *fedora*|*rhelfedora*)
-                read -r -d '' ascii <<'EOF'
-
-             ###########             
-         ###################         
-      ################    #####      
-    ##############          **###    
-   ##############          ****###   
-  ##############    #######*****###  
- ##############    #########*****### 
- ##############    #########*****### 
-###############    #########****#####
-###############     #####******######
-#####*****               *****#######
-####******              ***##########
-###****########    ################# 
-##****#########    ################# 
-##****#########    ################  
-##*****########    ###############   
-###******###.     ###############    
-#####**          ##############      
-#######*      ##############         
-  ######################             
-
-EOF
-                ;;
             *)
                 # Fallback for completely unknown distros
                 read -r -d '' ascii <<'EOF'
@@ -330,7 +284,7 @@ esac
 
 mapfile -t ascii_arr <<< "$ascii"
 # === Print side-by-side ===
-box_height=$((${#lines[@]} + 2))  
+box_height=$((${#lines[@]} + 2))  # +2 for top and bottom borders
 
 for (( i=0; i < ${#ascii_arr[@]}; i++ )); do
     # Left side: ASCII
@@ -351,6 +305,7 @@ for (( i=0; i < ${#ascii_arr[@]}; i++ )); do
             content_len=${#clean_content}
             # Total padding needed after content
             total_padding=$((box_content_width - content_len))
+            # Build the line character by character to ensure alignment
             right="│ "
             right+="${content}"
             for (( p=0; p<total_padding; p++ )); do
@@ -360,6 +315,7 @@ for (( i=0; i < ${#ascii_arr[@]}; i++ )); do
         fi
     fi
 
+    # Combine and print the full line
     printf "%-40s" "$left"
     echo -en "$right"
     echo
