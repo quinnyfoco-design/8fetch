@@ -1,4 +1,4 @@
-**CURRENT STATUS: >>UNSTABLE<<** 
+**CURRENT STATUS: >>STABLE<<** 
 
 ⓘ You can get the current version by the following instructions. If status=UNSTABLE you can get the latest stable version by going into releases and downloading the source code.
 
