@@ -85,9 +85,9 @@ else
     distro_id=$(grep '^ID=' /etc/os-release 2>/dev/null | cut -d'=' -f2 | tr -d '"')
     distro_base=$(grep '^ID_LIKE=' /etc/os-release 2>/dev/null | cut -d'=' -f2 | tr -d '"')
 
-case "$distro_id" in
-    arch|endeavouros|manjaro|garuda)
-        read -r -d '' ascii <<'EOF'
+    case "$distro_id" in
+        arch|endeavouros|manjaro|garuda)
+            read -r -d '' ascii <<'EOF'
                    -`
                   .o+`
                  `ooo/
