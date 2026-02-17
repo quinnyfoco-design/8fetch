@@ -111,7 +111,7 @@ else
 EOF
         ;;
     ubuntu)
-        read -r -d '' ascii <<'EOF'
+        mapfile -t ascii_arr <<'EOF'
 
               ===========
           ===================
