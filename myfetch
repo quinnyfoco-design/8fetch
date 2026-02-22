@@ -93,13 +93,7 @@ box_content_width=$max_len
 box_inner_width=$((box_content_width + 2))
 border=$(printf '─%.0s' $(seq 1 $box_inner_width))
 
-# === ASCII ===
-prox_os=""
-if command -v pveversion >/dev/null 2>&1; then
-    ver=$(pveversion | head -n1 | cut -d'/' -f2 | cut -d'-' -f1)
-    prox_os="Proxmox VE${ver:+ $ver}"
-fi
-
+# ASCII
 distro_id=$(cat /etc/os-release 2>/dev/null | grep '^ID=' | cut -d'=' -f2 | tr -d '"')
 distro_base=$(cat /etc/os-release 2>/dev/null | grep '^ID_LIKE=' | cut -d'=' -f2 | tr -d '"')
 
