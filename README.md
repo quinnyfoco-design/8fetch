@@ -69,4 +69,5 @@ sudo install -Dm755 myfetch /usr/local/bin/8fetch
 
 **KNOWN BUGS**
 
--Sizing issues
+-layout issues when window to small
+-First ascii line being set to the front[FINALLY FIXED]
