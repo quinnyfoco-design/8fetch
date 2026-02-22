@@ -219,7 +219,7 @@ EOF
     pop)
         sb="$SBRIGHTBLUE"
         r="$RESET"
-        IFS= read -r -d '' ascii <<'EOF'
+        IFS= read -r -d '' ascii <<EOF
 
             ${sb}.++++++++++++*..${r}
          ${sb}.++++++++++++++*****.${r}
