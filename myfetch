@@ -376,7 +376,7 @@ fi
 
 mapfile -t ascii_arr <<< "$ascii"
 # === Print side-by-side ===
-box_height=$((${#lines[@]} + 2))  # +2 for top and bottom borders
+box_height=$((${#lines[@]} + 2))
 
 for (( i=0; i < ${#ascii_arr[@]}; i++ )); do
     left="${ascii_arr[i]}"
@@ -402,6 +402,11 @@ for (( i=0; i < ${#ascii_arr[@]}; i++ )); do
         fi
     fi
 
-    printf "%-40s%s\n" "$left" "$right"
+    # FIX: measure visible (stripped) length of left to calculate correct padding
+    clean_left=$(printf "%s" "$left" | sed 's/\x1b\[[0-9;]*m//g')
+    visible_len=${#clean_left}
+    pad=$(( 40 - visible_len ))
+    (( pad < 0 )) && pad=0
+    printf "%s%${pad}s%s\n" "$left" "" "$right"
 done
 echo ""
