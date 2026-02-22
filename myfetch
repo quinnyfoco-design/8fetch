@@ -304,25 +304,25 @@ EOF
             b="$SBLUE"
             r="$RESET"
             IFS= read -r -d '' ascii <<EOF
-                   -'
-                  .o+'
-                 'ooo/
-                '+oooo:
-               '+oooooo:
-               -+oooooo+:
-             '/:-:++oooo+:
-            '/++++/+++++++:
-           '/++++++++++++++:
-          '/+++ooooooooooooo/'
-         ./ooosssso++osssssso+'
-        .oossssso-''''/ossssss+'
-       -osssssso.      :ssssssso.
-      :osssssss/        osssso+++.
-     /ossssssss/        +ssssooo/-
-   '/ossssso+/:-        -:/+osssso+-
-  '+sso+:-'                 '.-/+oso:
- '++:.                           '-/+/
- .'                                 '
+                   ${b}-'
+                  ${b}.o+'
+                 ${b}'ooo/
+                ${b}'+oooo:
+               ${b}'+oooooo:
+               ${b}-+oooooo+:
+             ${b}'/:-:++oooo+:
+            ${b}'/++++/+++++++:
+           ${b}'/++++++++++++++:
+          ${b}'/+++ooooooooooooo/'
+         ${b}./ooosssso++osssssso+'
+        ${b}.oossssso-''''/ossssss+'
+       ${b}-osssssso.      :ssssssso.
+      ${b}:osssssss/        osssso+++.
+     ${b}/ossssssss/        +ssssooo/-
+   ${b}'/ossssso+/:-        -:/+osssso+-
+  ${b}'+sso+:-'                 '.-/+oso:
+ ${b}'++:.                           '-/+/
+ ${b}.'                                 '
 EOF
         ;;
             *ubuntu*|*debian*)
