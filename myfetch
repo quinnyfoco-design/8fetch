@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Colors
-PURPLE='\033[35m'
-RESET='\033[0m'
+PURPLE=$'\033[35m'
+RESET=$'\033[0m'
 
 prox_os=""
 if command -v pveversion >/dev/null 2>& 1; then
@@ -19,7 +19,7 @@ else
 fi
 kernel="$(uname -r)"
 device="$(cat /sys/devices/virtual/dmi/id/product_name 2>/dev/null || echo 'Unknown')"
-uptime="$(uptime -p | sed 's/up //')"
+uptime="$(uptime | sed 's/up //')"
 terminal="bash $(bash --version | head -n1 | cut -d' ' -f4 | tr -d ',')"
 res_output=$(xrandr --query 2>/dev/null)
 display_res=$(echo "$res_output" | grep " primary" | grep -oP '\d+x\d+' || echo "unknown")
@@ -70,7 +70,7 @@ distro_base=$(cat /etc/os-release 2>/dev/null | grep '^ID_LIKE=' | cut -d'=' -f2
 
 # === ASCII selection ===
 if [ -n "$prox_os" ]; then
-read -r -d '' ascii <<'EOF'
+IFS= read -r -d '' ascii <<'EOF'
              @@@@   @@@@
           ++++ @@@@@@@ ++++
             ++++ @@@ ++++
@@ -87,7 +87,7 @@ else
 
     case "$distro_id" in
         arch|endeavouros|manjaro|garuda)
-            read -r -d '' ascii <<'EOF'
+            IFS= read -r -d '' ascii <<'EOF'
                    -`
                   .o+`
                  `ooo/
@@ -111,7 +111,7 @@ else
 EOF
         ;;
     ubuntu)
-        read -r -d '' ascii <<'EOF'
+        IFS= read -r -d '' ascii <<'EOF'
 
               ===========
           ===================
@@ -137,7 +137,7 @@ EOF
 EOF
         ;;
     linuxmint)
-        read -r -d '' ascii <<'EOF'
+        IFS= read -r -d '' ascii <<'EOF'
 
          .                   .
             ===============
@@ -163,7 +163,7 @@ EOF
 EOF
         ;;
     pop)
-        read -r -d '' ascii <<'EOF'
+        IFS= read -r -d '' ascii <<'EOF'
 
             .++++++++++++*..
          .++++++++++++++*****.
@@ -188,7 +188,7 @@ EOF
 EOF
         ;;
     cachyos)
-        read -r -d '' ascii <<'EOF'
+        IFS= read -r -d '' ascii <<'EOF'
 
 
 ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ **++++++++++++++++*
@@ -214,7 +214,7 @@ EOF
 EOF
         ;;
     void)
-        read -r -d '' ascii <<'EOF'
+        IFS= read -r -d '' ascii <<'EOF'
                 -------
               -----------
                -----------
@@ -239,7 +239,7 @@ EOF
         # Check if based on a supported distro
         case "$distro_base" in
             *arch*)
-                read -r -d '' ascii <<'EOF'
+                IFS= read -r -d '' ascii <<'EOF'
                    -`
                   .o+`
                  `ooo/
@@ -263,7 +263,7 @@ EOF
 EOF
                 ;;
             *ubuntu*|*debian*)
-                read -r -d '' ascii <<'EOF'
+                IFS= read -r -d '' ascii <<'EOF'
 
               ===========
           ===================
@@ -289,7 +289,7 @@ EOF
                 ;;
             *)
                 # Fallback for completely unknown distros
-                read -r -d '' ascii <<'EOF'
+                IFS= read -r -d '' ascii <<'EOF'
          _nnnn_
         dGGGGMMb
        @p~qp~~qMb
@@ -348,8 +348,6 @@ for (( i=0; i < ${#ascii_arr[@]}; i++ )); do
     fi
 
     # Combine and print the full line
-    printf "%-40s" "$left"
-    echo -en "$right"
-    echo
+    printf "%-40s%s\n" "$left" "$right"
 done
 echo ""
