@@ -6,12 +6,45 @@ TEAL=$'\033[38;5;43m'
 TEAL_DIM=$'\033[36m'
 WHITE=$'\033[1;37m'
 ORANGE=$'\033[38;5;208m'
+GREEN=$'\033[32m'
 RESET=$'\033[0m'
 
 prox_os=""
 if command -v pveversion >/dev/null 2>& 1; then
    ver=$(pveversion | head -n1 | cut -d'/' -f2 | cut -d'-' -f1)
    prox_os="Proxmox VE ${ver:+ $ver}"
+fi
+
+# === Determine label color based on distro (before building lines) ===
+_distro_id=$(grep '^ID=' /etc/os-release 2>/dev/null | cut -d'=' -f2 | tr -d '"')
+_distro_base=$(grep '^ID_LIKE=' /etc/os-release 2>/dev/null | cut -d'=' -f2 | tr -d '"')
+
+if [ -n "$prox_os" ]; then
+    label_color="$ORANGE"
+else
+    case "$_distro_id" in
+        arch|endeavouros|manjaro|garuda)
+            label_color="$BLUE" ;;
+        ubuntu)
+            label_color="$ORANGE" ;;
+        linuxmint)
+            label_color="$GREEN" ;;
+        pop)
+            label_color="$TEAL" ;;
+        cachyos)
+            label_color="$TEAL" ;;
+        void)
+            label_color="$GREEN" ;;
+        nixos)
+            label_color="$BLUE" ;;
+        *)
+            case "$_distro_base" in
+                *arch*)             label_color="$BLUE" ;;
+                *ubuntu*|*debian*)  label_color="$ORANGE" ;;
+                *)                  label_color="$PURPLE" ;;
+            esac
+            ;;
+    esac
 fi
 
 # === Gather system info ===
@@ -35,30 +68,27 @@ ram_used=$(free -h | awk '/^Mem:/ {print $3}')
 ram_total=$(free -h | awk '/^Mem:/ {print $2}')
 ram="$ram_used / $ram_total"
 
-# === Build colored lines ===
+# === Build colored lines (labels use label_color to match the logo) ===
 lines=()
-lines+=("${PURPLE}OS:${RESET} $os")
-lines+=("${PURPLE}Kernel:${RESET} Linux $kernel")
-lines+=("${PURPLE}Device:${RESET} $device")
-lines+=("${PURPLE}Uptime:${RESET} $uptime")
-lines+=("${PURPLE}Terminal:${RESET} $terminal")
-lines+=("${PURPLE}Display-res:${RESET} $display_res")
-[ -n "$display_res2" ] && lines+=("${PURPLE}Display-res2:${RESET} $display_res2")
-lines+=("${PURPLE}CPU-info:${RESET} $cpu_info")
-lines+=("${PURPLE}GPU-info:${RESET} $gpu_info")
-lines+=("${PURPLE}Ram:${RESET} $ram")
+lines+=("${label_color}OS:${RESET} $os")
+lines+=("${label_color}Kernel:${RESET} Linux $kernel")
+lines+=("${label_color}Device:${RESET} $device")
+lines+=("${label_color}Uptime:${RESET} $uptime")
+lines+=("${label_color}Terminal:${RESET} $terminal")
+lines+=("${label_color}Display-res:${RESET} $display_res")
+[ -n "$display_res2" ] && lines+=("${label_color}Display-res2:${RESET} $display_res2")
+lines+=("${label_color}CPU-info:${RESET} $cpu_info")
+lines+=("${label_color}GPU-info:${RESET} $gpu_info")
+lines+=("${label_color}Ram:${RESET} $ram")
 
 # === Box sizing (strip colors correctly for width) ===
 max_len=0
 for line in "${lines[@]}"; do
-    # Strip ANSI escapes - need to handle both \033 and \e formats
     clean=$(echo -e "$line" | sed 's/\x1b\[[0-9;]*m//g')
     len=${#clean}
     (( len > max_len )) && max_len=$len
 done
 
-# Box structure: │ <space> content <padding> <space> │
-# So border needs to be: content_width + 2 spaces
 box_content_width=$max_len
 box_inner_width=$((box_content_width + 2))
 border=$(printf '─%.0s' $(seq 1 $box_inner_width))
@@ -267,7 +297,6 @@ ${w}-------====${r}               ${b}******+++++${r}
 EOF
         ;;
     *)
-        # Check if based on a supported distro
         case "$distro_base" in
             *arch*)
                 IFS= read -r -d '' ascii <<'EOF'
@@ -319,7 +348,6 @@ EOF
 EOF
                 ;;
             *)
-                # Fallback for completely unknown distros
                 IFS= read -r -d '' ascii <<'EOF'
          _nnnn_
         dGGGGMMb
@@ -350,10 +378,8 @@ mapfile -t ascii_arr <<< "$ascii"
 box_height=$((${#lines[@]} + 2))  # +2 for top and bottom borders
 
 for (( i=0; i < ${#ascii_arr[@]}; i++ )); do
-    # Left side: ASCII
     left="${ascii_arr[i]}"
 
-    # Right side: box content (only for the first box_height lines)
     right=""
     if (( i < box_height )); then
         if (( i == 0 )); then
@@ -363,12 +389,9 @@ for (( i=0; i < ${#ascii_arr[@]}; i++ )); do
         else
             idx=$((i - 1))
             content="${lines[idx]}"
-            # Strip colors for length calculation - use same method as above
             clean_content=$(echo -e "$content" | sed 's/\x1b\[[0-9;]*m//g')
             content_len=${#clean_content}
-            # Total padding needed after content
             total_padding=$((box_content_width - content_len))
-            # Build the line character by character to ensure alignment
             right="│ "
             right+="${content}"
             for (( p=0; p<total_padding; p++ )); do
@@ -378,7 +401,6 @@ for (( i=0; i < ${#ascii_arr[@]}; i++ )); do
         fi
     fi
 
-    # Combine and print the full line
     printf "%-40s%s\n" "$left" "$right"
 done
 echo ""
