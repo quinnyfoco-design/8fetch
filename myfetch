@@ -127,7 +127,7 @@ else
             b="$BLUE"
             r="$RESET"
             IFS= read -r -d '' ascii <<EOF
-${b}               -\`
+               ${b}-\`
                   .o+\`
                  \`ooo/
                 \`+oooo:
