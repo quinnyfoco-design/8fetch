@@ -299,30 +299,30 @@ EOF
         ;;
     *)
         case "$distro_base" in
-            *arch*)
-                IFS= read -r -d '' ascii <<'EOF'
-                   -`
-                  .o+`
-                 `ooo/
-                `+oooo:
-               `+oooooo:
-               -+oooooo+:
-             `/:-:++oooo+:
-            `/++++/+++++++:
-           `/++++++++++++++:
-          `/+++ooooooooooooo/`
-         ./ooosssso++osssssso+`
-        .oossssso-````/ossssss+`
-       -osssssso.      :ssssssso.
-      :osssssss/        osssso+++.
-     /ossssssss/        +ssssooo/-
-   `/ossssso+/:-        -:/+osssso+-
-  `+sso+:-`                 `.-/+oso:
- `++:.                           `-/+/
- .`                                 `
-
+            b="$BLUE"
+            r="$RESET"
+            IFS= read -r -d '' ascii <<EOF
+               ${b}-\`${r}
+              ${b}.o+\`${r}
+             ${b}\`ooo/${r}
+            ${b}\`+oooo:${r}
+           ${b}\`+oooooo:${r}
+           ${b}-+oooooo+:${r}
+         ${b}\`/:-:++oooo+:${r}
+        ${b}\`/++++/+++++++:${r}
+       ${b}\`/++++++++++++++:${r}
+      ${b}\`/+++ooooooooooooo/\`${r}
+     ${b}./ooosssso++osssssso+\`${r}
+    ${b}.oossssso-\`\`\`\`/ossssss+\`${r}
+    ${b}-osssssso.       :ssssssso.${r}
+   ${b}:osssssss/         osssso+++.${r}
+   ${b}/ossssssss/        +ssssooo/-${r}
+ ${b}\`/ossssso+/:-        -:/+osssso+-${r}
+  ${b}\`+sso+:-\`                 \`.-/+oso:${r}
+${b}\`++:.                           \`-/+/${r}
+${b}.\`                                 \`${r}
 EOF
-                ;;
+        ;;
             *ubuntu*|*debian*)
                 IFS= read -r -d '' ascii <<'EOF'
 
