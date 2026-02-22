@@ -299,6 +299,7 @@ EOF
         ;;
     *)
         case "$distro_base" in
+                    arch|endeavouros|manjaro|garuda)
             b="$BLUE"
             r="$RESET"
             IFS= read -r -d '' ascii <<EOF
