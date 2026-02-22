@@ -128,25 +128,25 @@ else
             b="$SBLUE"
             r="$RESET"
             IFS= read -r -d '' ascii <<EOF
-                ${b}-`${r}
-                  .o+`
-                 `ooo/
-                `+oooo:
-               `+oooooo:
+                   -'
+                  .o+'
+                 'ooo/
+                '+oooo:
+               '+oooooo:
                -+oooooo+:
-             `/:-:++oooo+:
-            `/++++/+++++++:
-           `/++++++++++++++:
-          `/+++ooooooooooooo/`
-         ./ooosssso++osssssso+`
-        .oossssso-````/ossssss+`
+             '/:-:++oooo+:
+            '/++++/+++++++:
+           '/++++++++++++++:
+          '/+++ooooooooooooo/'
+         ./ooosssso++osssssso+'
+        .oossssso-''''/ossssss+'
        -osssssso.      :ssssssso.
       :osssssss/        osssso+++.
      /ossssssss/        +ssssooo/-
-   `/ossssso+/:-        -:/+osssso+-
-  `+sso+:-`                 `.-/+oso:
- `++:.                           `-/+/
- .`                                 `
+   '/ossssso+/:-        -:/+osssso+-
+  '+sso+:-'                 '.-/+oso:
+ '++:.                           '-/+/
+ .'                                 '
 EOF
         ;;
     ubuntu)
