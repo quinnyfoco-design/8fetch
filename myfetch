@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Colors
-SBRIGHTBLUE=$'\033[94m'
+SBRIGHTBLUE=$'\033[38;5;153m'
 PURPLE=$'\033[35m'
 BLUE=$'\033[1;34m'
 SBLUE=$'\033[34m'
