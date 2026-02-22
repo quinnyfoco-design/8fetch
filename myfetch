@@ -58,7 +58,7 @@ fi
 kernel="$(uname -r)"
 device="$(cat /sys/devices/virtual/dmi/id/product_name 2>/dev/null || echo 'Unknown')"
 uptime="$(uptime | sed 's/up //')"
-terminal="bash $(bash --version | head -n1 | cut -d' ' -f4 | tr -d ',')"
+terminal="${BASH_VERSION}"
 res_output=$(xrandr --query 2>/dev/null)
 display_res=$(echo "$res_output" | grep " primary" | grep -oP '\d+x\d+' || echo "unknown")
 display_res2=$(echo "$res_output" | grep " connected" | grep -v " primary" | grep -oP '\d+x\d+' | head -n1 || echo "")
