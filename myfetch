@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Colors
+SBRIGHTBLUE=$'\033[94m'
 PURPLE=$'\033[35m'
 BLUE=$'\033[1;34m'
 SBLUE=$'\033[34m'
@@ -163,11 +164,12 @@ EOF
         ;;
     ubuntu)
         or="$SORANGE"
+        sb="$SBRIGHTBLUE"
         r="$RESET"
         IFS= read -r -d '' ascii <<EOF
 
-              ${or}===========${r}
-          ${or}===================${r}
+              ${sb}===========${r}
+          ${sb}===================${r}
         ${or}=======================${r}
       ${or}=================     =====${r}
      ${or}==========       =     ======${r}
