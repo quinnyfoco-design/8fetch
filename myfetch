@@ -2,7 +2,7 @@
 # Colors
 PURPLE=$'\033[35m'
 BLUE=$'\033[1;34m'
-SBLUE='\033[0;34m'
+SBLUE='\033[34m'
 TEAL=$'\033[38;5;43m'
 TEAL_DIM=$'\033[36m'
 WHITE=$'\033[1;37m'
