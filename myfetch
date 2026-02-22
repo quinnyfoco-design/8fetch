@@ -124,27 +124,28 @@ else
 
     case "$distro_id" in
         arch|endeavouros|manjaro|garuda)
-            IFS= read -r -d '' ascii <<'EOF'
-                   -`
-                  .o+`
-                 `ooo/
-                `+oooo:
-               `+oooooo:
+            b="$BLUE"
+            r="$RESET"
+            IFS= read -r -d '' ascii <<EOF
+${b}               -\`
+                  .o+\`
+                 \`ooo/
+                \`+oooo:
+               \`+oooooo:
                -+oooooo+:
-             `/:-:++oooo+:
-            `/++++/+++++++:
-           `/++++++++++++++:
-          `/+++ooooooooooooo/`
-         ./ooosssso++osssssso+`
-        .oossssso-````/ossssss+`
+             \`/:-:++oooo+:
+            \`/++++/+++++++:
+           \`/++++++++++++++:
+          \`/+++ooooooooooooo/\`
+         ./ooosssso++osssssso+\`
+        .oossssso-\`\`\`\`/ossssss+\`
        -osssssso.      :ssssssso.
       :osssssss/        osssso+++.
      /ossssssss/        +ssssooo/-
-   `/ossssso+/:-        -:/+osssso+-
-  `+sso+:-`                 `.-/+oso:
- `++:.                           `-/+/
- .`                                 `
-
+   \`/ossssso+/:-        -:/+osssso+-
+  \`+sso+:-\`                 \`.-/+oso:
+ \`++:.                           \`-/+/
+ .\`                                 \`${r}
 EOF
         ;;
     ubuntu)
