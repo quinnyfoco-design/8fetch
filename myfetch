@@ -7,6 +7,7 @@ TEAL=$'\033[38;5;43m'
 TEAL_DIM=$'\033[36m'
 WHITE=$'\033[1;37m'
 ORANGE=$'\033[1;38;5;208m'
+SORANGE=$'\033[38;5;208m'
 GREEN=$'\033[32m'
 RESET=$'\033[0m'
 
@@ -150,7 +151,7 @@ else
 EOF
         ;;
     ubuntu)
-        or="$ORANGE"
+        or="$SORANGE"
         r="$RESET"
         IFS= read -r -d '' ascii <<EOF
 
