@@ -8,10 +8,10 @@ arch=('any')
 url="https://github.com/quinnyfoco-design/8fetch"
 license=('AGPL-3.0-or-later')
 depends=('bash')
-source=("${pkgname}-${pkgver}.tar.gz::https://github.com/quinnyfoco-design/${pkgname}/archive/refs/tags/v${pkgver}.tar.gz")
-sha256sums=('8ae5bfa9e10e0aae9bdbc46bd8998faa189ed3338e54856c66c8f6f02c1f3748')
+source=("${pkgname}::git+https://github.com/quinnyfoco-design/${pkgname}.git")
+sha256sums=('SKIP')
 
 package() {
-    cd "${srcdir}/${pkgname}-${pkgver}"
+    cd "${srcdir}/${pkgname}"
     install -Dm755 myfetch "${pkgdir}/usr/bin/8fetch"
 }
