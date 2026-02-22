@@ -152,7 +152,7 @@ EOF
     ubuntu)
         or="$ORANGE"
         r="$RESET"
-        IFS= read -r -d '' ascii <<'EOF'
+        IFS= read -r -d '' ascii <<EOF
 
               ${or}===========${r}
           ${or}===================${r}
