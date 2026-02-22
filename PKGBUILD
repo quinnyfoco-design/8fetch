@@ -9,7 +9,7 @@ url="https://github.com/quinnyfoco-design/8fetch"
 license=('AGPL-3.0-or-later')
 depends=('bash')
 source=("${pkgname}-${pkgver}.tar.gz::https://github.com/quinnyfoco-design/${pkgname}/archive/refs/tags/v${pkgver}.tar.gz")
-sha256sums=('f744134ebe86e6edd852175349247aef4e2e235b8c8ef35eff189474445888dc')
+sha256sums=('8ae5bfa9e10e0aae9bdbc46bd8998faa189ed3338e54856c66c8f6f02c1f3748')
 
 package() {
     cd "${srcdir}/${pkgname}-${pkgver}"
