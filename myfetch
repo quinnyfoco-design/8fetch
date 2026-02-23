@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Colors
+# colors
 SYELLOW=$'\033[33m'
 SBLACK=$'\033[39m'
 SBRIGHTBLUE=$'\033[38;5;153m'
@@ -21,7 +21,7 @@ if command -v pveversion >/dev/null 2>& 1; then
    prox_os="Proxmox VE ${ver:+ $ver}"
 fi
 
-# === Determine label color based on distro (before building lines) ===
+# level color
 _distro_id=$(grep '^ID=' /etc/os-release 2>/dev/null | cut -d'=' -f2 | tr -d '"')
 _distro_base=$(grep '^ID_LIKE=' /etc/os-release 2>/dev/null | cut -d'=' -f2 | tr -d '"')
 
@@ -53,7 +53,7 @@ else
     esac
 fi
 
-# === Gather system info ===
+# sysinfo
 if [ -n "$prox_os" ]; then
     os="$prox_os"
 else
@@ -67,7 +67,6 @@ uptime_p=$(uptime -p 2>/dev/null)
 if [[ "$uptime_p" == up* ]]; then
     uptime="${uptime_p#up }"
 else
-    # BusyBox / Alpine fallback: parse classic uptime format
     uptime=$(uptime 2>/dev/null | sed 's/.*up \([^,]*\).*/\1/' | xargs || echo "unknown")
 fi
 terminal="${BASH_VERSION}"
@@ -95,7 +94,7 @@ ram_used=$(free -h | awk '/^Mem:/ {print $3}')
 ram_total=$(free -h | awk '/^Mem:/ {print $2}')
 ram="$ram_used / $ram_total"
 
-# === Build colored lines (labels use label_color to match the logo) ===
+# lines
 lines=()
 lines+=("${label_color}OS:${RESET} $os")
 lines+=("${label_color}Kernel:${RESET} Linux $kernel")
@@ -108,7 +107,7 @@ lines+=("${label_color}CPU-info:${RESET} $cpu_info")
 lines+=("${label_color}GPU-info:${RESET} $gpu_info")
 lines+=("${label_color}Ram:${RESET} $ram")
 
-# === Box sizing (strip colors correctly for width) ===
+# border
 max_len=0
 for line in "${lines[@]}"; do
     clean=$(echo -e "$line" | sed 's/\x1b\[[0-9;]*m//g')
@@ -120,11 +119,10 @@ box_content_width=$max_len
 box_inner_width=$((box_content_width + 2))
 border=$(printf '─%.0s' $(seq 1 $box_inner_width))
 
-# ASCII
 distro_id=$(cat /etc/os-release 2>/dev/null | grep '^ID=' | cut -d'=' -f2 | tr -d '"')
 distro_base=$(cat /etc/os-release 2>/dev/null | grep '^ID_LIKE=' | cut -d'=' -f2 | tr -d '"')
 
-# === ASCII selection ===
+# ascii
 if [ -n "$prox_os" ]; then
     o="$ORANGE"
     w="$WHITE"
@@ -407,7 +405,7 @@ esac
 fi
 
 mapfile -t ascii_arr <<< "$ascii"
-# === Print side-by-side ===
+# printing
 box_height=$((${#lines[@]} + 2))
 
 for (( i=0; i < ${#ascii_arr[@]}; i++ )); do
@@ -434,7 +432,6 @@ for (( i=0; i < ${#ascii_arr[@]}; i++ )); do
         fi
     fi
 
-    # FIX: measure visible (stripped) length of left to calculate correct padding
     clean_left=$(printf "%s" "$left" | sed 's/\x1b\[[0-9;]*m//g')
     visible_len=${#clean_left}
     pad=$(( 40 - visible_len ))
