@@ -16,7 +16,7 @@ SGREEN=$'\033[32m'
 RESET=$'\033[0m'
 
 prox_os=""
-if command -v pveversion >/dev/null 2>& 1; then
+if command -v pveversion >/dev/null 2>&1; then
    ver=$(pveversion | head -n1 | cut -d'/' -f2 | cut -d'-' -f1)
    prox_os="Proxmox VE ${ver:+ $ver}"
 fi
