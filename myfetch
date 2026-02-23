@@ -61,8 +61,13 @@ else
 fi
 kernel="$(uname -r)"
 device="$(cat /sys/devices/virtual/dmi/id/product_name 2>/dev/null || echo 'Unknown')"
-uptime=$(uptime -p 2>/dev/null || echo "unknown")
-uptime=${uptime#up }
+uptime_p=$(uptime -p 2>/dev/null)
+if [[ "$uptime_p" == up* ]]; then
+    uptime="${uptime_p#up }"
+else
+    # BusyBox / Alpine fallback: parse classic uptime format
+    uptime=$(uptime 2>/dev/null | sed 's/.*up \([^,]*\).*/\1/' | xargs || echo "unknown")
+fi
 terminal="${BASH_VERSION}"
 res_output=$(xrandr --query 2>/dev/null)
 display_res=$(echo "$res_output" | grep " primary" | grep -oP '\d+x\d+' || echo "unknown")
