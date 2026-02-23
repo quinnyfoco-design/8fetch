@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Colors
 SYELLOW=$'\033[33m'
-SBLACK=$'\033[30m'
+SBLACK=$'\033[37m'
 SBRIGHTBLUE=$'\033[38;5;153m'
 PURPLE=$'\033[35m'
 BLUE=$'\033[1;34m'
