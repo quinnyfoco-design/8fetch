@@ -383,23 +383,22 @@ EOF
                 sb="$SBLACK"
                 r="$RESET"
                 IFS= read -r -d '' ascii <<EOF
-         ${sb}_nnnn_${r}
-        ${sb}dGGGGMMb${r}
-       ${sb}@p${r}~${sb}qp${r}~~${sb}qMb${r}
-       ${sb}M${r}|${sb}@${r}||${sb}@${r})${sb}M|${r}
-       @,----.JM|${r}
-      JS^\__/..qKL${r}
-     dZd........qKRb${r}
-    dZP..........qKKb${r}
-   fZP............SMMb${r}
-   HZM............MMMM${r}
-   FqM............MMMM${r}
- __| ".........|\dS"qML${r}
- |    `........| `' \Zq${r}
-_)      \.___.,|     .'${r}
-\____.  )MMMMMP|   .'${r}
-     `-'       `--'${r}
-
+              a8888b.
+             d888888b.
+             8P"YP"Y88
+             8|o||o|88
+             8'    .88
+             8'._.' Y8.
+            d/      '8b.
+          .dP   .     Y8b.
+         d8:'   "   '::88b.
+        d8"           'Y88b
+       :8P     '       :888
+        8a.    :      _a88P
+      ._/"Yaa_ :    .| 88P|
+      \    YP"      '| 8P  '.
+      /     \._____.d|    .'
+      '--..__)888888P'._.'
 EOF
                 ;;
         esac
