@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # Colors
+SYELLOW=$'\033[33m'
+SBLACK=$'\033[30m'
 SBRIGHTBLUE=$'\033[38;5;153m'
 PURPLE=$'\033[35m'
 BLUE=$'\033[1;34m'
@@ -377,23 +379,26 @@ EOF
 EOF
                 ;;
             *)
-                IFS= read -r -d '' ascii <<'EOF'
-         _nnnn_
-        dGGGGMMb
-       @p~qp~~qMb
-       M|@||@) M|
-       @,----.JM|
-      JS^\__/..qKL
-     dZd........qKRb
-    dZP..........qKKb
-   fZP............SMMb
-   HZM............MMMM
-   FqM............MMMM
- __| ".........|\dS"qML
- |    `........| `' \Zq
-_)      \.___.,|     .'
-\____.  )MMMMMP|   .'
-     `-'       `--'
+                sy="$SYELLOW"
+                sb="$SBLACK"
+                r="$RESET"
+                IFS= read -r -d '' ascii <<EOF
+         ${sb}_nnnn_${r}
+        ${sb}dGGGGMMb${r}
+       ${sb}@p${r}~${sb}qp${r}~~${sb}qMb${r}
+       ${sb}M${r}|${sb}@${r}||${sb}@${r})${sb}M|${r}
+       @,----.JM|${r}
+      JS^\__/..qKL${r}
+     dZd........qKRb${r}
+    dZP..........qKKb${r}
+   fZP............SMMb${r}
+   HZM............MMMM${r}
+   FqM............MMMM${r}
+ __| ".........|\dS"qML${r}
+ |    `........| `' \Zq${r}
+_)      \.___.,|     .'${r}
+\____.  )MMMMMP|   .'${r}
+     `-'       `--'${r}
 
 EOF
                 ;;
