@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# --- flag parsing ---
 GREY_MODE=false
 for arg in "$@"; do
     case "$arg" in
