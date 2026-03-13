@@ -1,19 +1,45 @@
 #!/usr/bin/env bash
+
+# --- flag parsing ---
+GREY_MODE=false
+for arg in "$@"; do
+    case "$arg" in
+        --grey) GREY_MODE=true ;;
+    esac
+done
+
 # colors
-SYELLOW=$'\033[33m'
-SBLACK=$'\033[39m'
-SBRIGHTBLUE=$'\033[38;5;153m'
-PURPLE=$'\033[35m'
-BLUE=$'\033[1;34m'
-SBLUE=$'\033[34m'
-TEAL=$'\033[38;5;43m'
-TEAL_DIM=$'\033[36m'
-WHITE=$'\033[1;37m'
-ORANGE=$'\033[1;38;5;208m'
-SORANGE=$'\033[38;5;208m'
-GREEN=$'\033[1;32m'
-SGREEN=$'\033[32m'
-RESET=$'\033[0m'
+if $GREY_MODE; then
+    SYELLOW=""
+    SBLACK=""
+    SBRIGHTBLUE=""
+    PURPLE=""
+    BLUE=""
+    SBLUE=""
+    TEAL=""
+    TEAL_DIM=""
+    WHITE=""
+    ORANGE=""
+    SORANGE=""
+    GREEN=""
+    SGREEN=""
+    RESET=""
+else
+    SYELLOW=$'\033[33m'
+    SBLACK=$'\033[39m'
+    SBRIGHTBLUE=$'\033[38;5;153m'
+    PURPLE=$'\033[35m'
+    BLUE=$'\033[1;34m'
+    SBLUE=$'\033[34m'
+    TEAL=$'\033[38;5;43m'
+    TEAL_DIM=$'\033[36m'
+    WHITE=$'\033[1;37m'
+    ORANGE=$'\033[1;38;5;208m'
+    SORANGE=$'\033[38;5;208m'
+    GREEN=$'\033[1;32m'
+    SGREEN=$'\033[32m'
+    RESET=$'\033[0m'
+fi
 
 prox_os=""
 if command -v pveversion >/dev/null 2>&1; then
@@ -362,7 +388,7 @@ EOF
    ${or}========    .=======.    ========${r}
   ${or}========    ===========    ========${r}
   ${or}====   =   =============   :=======${r}
-  ${or}===     =  ========================${r}
+  ${or}====   =   =============   :=======${r}
   ${or}====   =   =============   :=======${r}
   ${or}========    ===========    ========${r}
    ${or}========    .=======:    ========${r}
