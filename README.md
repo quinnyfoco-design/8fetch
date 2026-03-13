@@ -36,7 +36,7 @@ sudo install -Dm755 myfetch /usr/local/bin/8fetch
 
 On *all* systems:
 ```bash
-8fetch
+8fetch (optional: --grey. A flag so the output doesnt have color.
 ```
 
 **UPDATING**
