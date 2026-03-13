@@ -36,7 +36,15 @@ sudo install -Dm755 myfetch /usr/local/bin/8fetch
 
 On *all* systems:
 ```bash
-8fetch (optional: --grey. A flag so the output doesnt have color.
+8fetch
+```
+
+Flags(newly added):
+```bash
+--grey # prints the output with no color(default/white).
+```
+```bash
+--color:hexcode # prints the output with the hex color.
 ```
 
 **UPDATING**
