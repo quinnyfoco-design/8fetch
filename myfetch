@@ -1,13 +1,31 @@
 #!/usr/bin/env bash
 
 GREY_MODE=false
+COLOR_HEX=""
 for arg in "$@"; do
     case "$arg" in
-        --grey) GREY_MODE=true ;;
+        --grey)      GREY_MODE=true ;;
+        --color:*)   COLOR_HEX="${arg#--color:}" ;;
     esac
 done
 
+_hex_to_ansi() {
+    local hex="${1#'#'}"
+    local r=$((16#${hex:0:2}))
+    local g=$((16#${hex:2:2}))
+    local b=$((16#${hex:4:2}))
+    printf '\033[38;2;%d;%d;%dm' "$r" "$g" "$b"
+}
+_hex_to_ansi_bold() {
+    local hex="${1#'#'}"
+    local r=$((16#${hex:0:2}))
+    local g=$((16#${hex:2:2}))
+    local b=$((16#${hex:4:2}))
+    printf '\033[1;38;2;%d;%d;%dm' "$r" "$g" "$b"
+}
+
 # colors
+_INFO_COLOR=""
 if $GREY_MODE; then
     SYELLOW=""
     SBLACK=""
@@ -23,6 +41,26 @@ if $GREY_MODE; then
     GREEN=""
     SGREEN=""
     RESET=""
+elif [ -n "$COLOR_HEX" ]; then
+    _C=$(_hex_to_ansi "$COLOR_HEX")
+    _CB=$(_hex_to_ansi_bold "$COLOR_HEX")
+    RESET=$'\033[0m'
+    _INFO_COLOR="$_C"
+    # all palette vars → same single color
+    SYELLOW="$_C"
+    SBLACK="$_C"
+    SBRIGHTBLUE="$_C"
+    PURPLE="$_C"
+    BLUE="$_C"
+    SBLUE="$_C"
+    TEAL="$_C"
+    TEAL_DIM="$_C"
+    WHITE="$_C"
+    ORANGE="$_C"
+    SORANGE="$_C"
+    GREEN="$_C"
+    SGREEN="$_C"
+    _CUSTOM_LABEL_COLOR="$_CB"
 else
     SYELLOW=$'\033[33m'
     SBLACK=$'\033[39m'
@@ -78,6 +116,9 @@ else
     esac
 fi
 
+# apply custom label color if --color was used
+[ -n "$_CUSTOM_LABEL_COLOR" ] && label_color="$_CUSTOM_LABEL_COLOR"
+
 # sysinfo
 if [ -n "$prox_os" ]; then
     os="$prox_os"
@@ -119,18 +160,18 @@ ram_used=$(free -h | awk '/^Mem:/ {print $3}')
 ram_total=$(free -h | awk '/^Mem:/ {print $2}')
 ram="$ram_used / $ram_total"
 
-# lines
+# lines — info values wrapped in _INFO_COLOR so --color tints them too
 lines=()
-lines+=("${label_color}OS:${RESET} $os")
-lines+=("${label_color}Kernel:${RESET} Linux $kernel")
-lines+=("${label_color}Device:${RESET} $device")
-lines+=("${label_color}Uptime:${RESET} $uptime")
-lines+=("${label_color}Terminal:${RESET} $terminal")
-lines+=("${label_color}Display-res:${RESET} $display_res")
-[ -n "$display_res2" ] && lines+=("${label_color}Display-res2:${RESET} $display_res2")
-lines+=("${label_color}CPU-info:${RESET} $cpu_info")
-lines+=("${label_color}GPU-info:${RESET} $gpu_info")
-lines+=("${label_color}Ram:${RESET} $ram")
+lines+=("${label_color}OS:${RESET} ${_INFO_COLOR}$os${RESET}")
+lines+=("${label_color}Kernel:${RESET} ${_INFO_COLOR}Linux $kernel${RESET}")
+lines+=("${label_color}Device:${RESET} ${_INFO_COLOR}$device${RESET}")
+lines+=("${label_color}Uptime:${RESET} ${_INFO_COLOR}$uptime${RESET}")
+lines+=("${label_color}Terminal:${RESET} ${_INFO_COLOR}$terminal${RESET}")
+lines+=("${label_color}Display-res:${RESET} ${_INFO_COLOR}$display_res${RESET}")
+[ -n "$display_res2" ] && lines+=("${label_color}Display-res2:${RESET} ${_INFO_COLOR}$display_res2${RESET}")
+lines+=("${label_color}CPU-info:${RESET} ${_INFO_COLOR}$cpu_info${RESET}")
+lines+=("${label_color}GPU-info:${RESET} ${_INFO_COLOR}$gpu_info${RESET}")
+lines+=("${label_color}Ram:${RESET} ${_INFO_COLOR}$ram${RESET}")
 
 # border
 max_len=0
@@ -439,21 +480,21 @@ for (( i=0; i < ${#ascii_arr[@]}; i++ )); do
     right=""
     if (( i < box_height )); then
         if (( i == 0 )); then
-            right="╭${border}╮"
+            right="${_INFO_COLOR}╭${border}╮${RESET}"
         elif (( i == box_height - 1 )); then
-            right="╰${border}╯"
+            right="${_INFO_COLOR}╰${border}╯${RESET}"
         else
             idx=$((i - 1))
             content="${lines[idx]}"
             clean_content=$(echo -e "$content" | sed 's/\x1b\[[0-9;]*m//g')
             content_len=${#clean_content}
             total_padding=$((box_content_width - content_len))
-            right="│ "
+            right="${_INFO_COLOR}│${RESET} "
             right+="${content}"
             for (( p=0; p<total_padding; p++ )); do
                 right+=" "
             done
-            right+=" │"
+            right+=" ${_INFO_COLOR}│${RESET}"
         fi
     fi
 
