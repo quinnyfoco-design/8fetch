@@ -21,6 +21,9 @@ git clone https://github.com/quinnyfoco-design/8fetch.git
 cd 8fetch
 ```
 ```
+gcc -O2 -o myfetch myfetch.c
+```
+```
 sudo install -Dm755 myfetch /usr/local/bin/8fetch # (if yay on arch doesnt work, this also works for arch.)
 ```
 
@@ -56,6 +59,9 @@ cd 8fetch
 ```
 ```
 git pull
+```
+```
+gcc -O2 -o myfetch myfetch.c
 ```
 ```
 sudo install -Dm755 myfetch /usr/local/bin/8fetch # (if yay on arch doesnt work, this also works for arch.)
