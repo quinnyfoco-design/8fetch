@@ -72,7 +72,7 @@ cd 8fetch
 git pull
 ```
 ```
-sudo install -Dm755 myfetch /usr/local/bin/8fetch
+sudo install -Dm755 myfetch /usr/local/bin/8fetch (if makepkg on arch doesnt work, this also works for arch.)
 ```
 
 **KNOWN BUGS**
