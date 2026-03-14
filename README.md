@@ -1,9 +1,10 @@
 Hello! 8fetch is a simple info fetching script like neofetch.
 This was created by @germanphoneguy and if you have any problems
-w/ 8fetch or improvements id love to be contacted on tiktok.
+w/ 8fetch, improvements or distro requests i'd love to be contacted
+on tiktok instead of here.
 
-If you wanna compile from source or read the code, check myfetch.c.
-The full code and how to compile it is there.
+If you wanna compile from source or read the code, check myfetch.c,
+the full code and how to compile it is there.
 
 **INSTALLATION**
 
