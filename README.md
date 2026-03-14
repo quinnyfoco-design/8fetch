@@ -11,13 +11,7 @@ the full code and how to compile it is there.
 On Arch systems:
 
 ```bash
-git clone https://github.com/quinnyfoco-design/8fetch.git
-```
-```
-cd 8fetch
-```
-```
-makepkg -si
+yay -S 8fetch
 ```
 
 On other:
@@ -29,7 +23,7 @@ git clone https://github.com/quinnyfoco-design/8fetch.git
 cd 8fetch
 ```
 ```
-sudo install -Dm755 myfetch /usr/local/bin/8fetch
+sudo install -Dm755 myfetch /usr/local/bin/8fetch (if yay on arch doesnt work, this also works for arch.)
 ```
 
 **RUNNING**
@@ -54,13 +48,7 @@ As easy as installing.
 On Arch systems:
 
 ```bash
-cd 8fetch
-```
-```
-git pull
-```
-```
-makepkg -si
+yay -S 8fetch
 ```
 
 On other:
@@ -72,7 +60,7 @@ cd 8fetch
 git pull
 ```
 ```
-sudo install -Dm755 myfetch /usr/local/bin/8fetch (if makepkg on arch doesnt work, this also works for arch.)
+sudo install -Dm755 myfetch /usr/local/bin/8fetch (if yay on arch doesnt work, this also works for arch.)
 ```
 
 **KNOWN BUGS**
