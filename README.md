@@ -1,10 +1,9 @@
-**CURRENT STATUS: >>STABLE<<** 
-
-ⓘ You can get the current version by the following instructions. If status=UNSTABLE you can get the latest stable version by going into releases and downloading the source code.
-
 Hello! 8fetch is a simple info fetching script like neofetch.
 This was created by @germanphoneguy and if you have any problems
 w/ 8fetch or improvements id love to be contacted on tiktok.
+
+If you wanna compile from source or read the code, check myfetch.c.
+The full code and how to compile it is there.
 
 **INSTALLATION**
 
