@@ -406,6 +406,8 @@ static void choose_label_color(void) {
     if (!strcmp(g_distro_id,"arch")       || !strcmp(g_distro_id,"endeavouros") ||
         !strcmp(g_distro_id,"manjaro")    || !strcmp(g_distro_id,"garuda"))
     { label_color = BLUE;      return; }
+    if (!strcmp(g_distro_id,"artix"))
+    { label_color = BLUE; return; }
     if (!strcmp(g_distro_id,"ubuntu"))    { label_color = ORANGE;    return; }
     if (!strcmp(g_distro_id,"linuxmint")) { label_color = GREEN;     return; }
     if (!strcmp(g_distro_id,"pop"))       { label_color = TEAL;      return; }
@@ -436,6 +438,30 @@ static void build_ascii_proxmox(void) {
     AL("           %s++++%s %s@@@@@%s %s++++%s",       o,r,w,r,o,r);
     AL("          %s+++%s %s@@@@%s %s@@@@%s %s+++%s",  o,r,w,r,w,r,o,r);
     AL("             %s@@@%s     %s@@@%s",              w,r,w,r);
+    ALN();
+}
+
+static void build_ascii_artix(void) {
+    const char *b=SBLUE, *r=RESET_C;
+    ALN();
+    AL("                  %s+%s",                          b,r);
+    AL("                 %s=++%s",                         b,r);
+    AL("                %s=+=+=%s",                        b,r);
+    AL("               %s-+===+-%s",                       b,r);
+    AL("              %s-++====+-%s",                       b,r);
+    AL("             %s:+++-====+:%s",                     b,r);
+    AL("             %s=+***+===++.%s",                    b,r);
+    AL("                %s:****==++.%s",                   b,r);
+    AL("          %s.+.      .***=++.%s",                  b,r);
+    AL("          %s+++=++-      +*++%s",                  b,r);
+    AL("        %s.=++=====++++     -+.%s",                b,r);
+    AL("        %s++++=======++++++.%s",                   b,r);
+    AL("       %s=+++=======-+++++++=.%s",                 b,r);
+    AL("      %s=+++======+****+:     :+=%s",              b,r);
+    AL("     %s-+++====+***=.      -++==+-%s",             b,r);
+    AL("    %s-+++==***:        =+++++===+-%s",            b,r);
+    AL("   %s:+++*+.                :+**+=+.%s",           b,r);
+    AL("  %s:+-                          .=+:%s",          b,r);
     ALN();
 }
 
@@ -704,6 +730,8 @@ static void build_ascii(void) {
     if (!strcmp(id,"arch")       || !strcmp(id,"endeavouros") ||
         !strcmp(id,"manjaro")    || !strcmp(id,"garuda"))
     { build_ascii_arch();     return; }
+    if (!strcmp(g_distro_id,"artix"))
+    { build_ascii_artix(); return; }
     if (!strcmp(id,"ubuntu"))    { build_ascii_ubuntu();   return; }
     if (!strcmp(id,"linuxmint")) { build_ascii_mint();     return; }
     if (!strcmp(id,"pop"))       { build_ascii_pop();      return; }
