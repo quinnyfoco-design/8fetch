@@ -27,7 +27,7 @@ gcc -O2 -o myfetch myfetch.c
 sudo install -Dm755 myfetch /usr/local/bin/8fetch
 ```
 
-~~~~~~~~~~~~~~~~~
++----------------+
 
 If you are on a system without root(School systems or unrooted android devices):
 
@@ -63,7 +63,7 @@ fish_add_path ~/bin
 ```
 I only know the syntax of these 3, if you use another shell please lookup of what the equivalent to these are of ur shell.
 
-~~~~~~~~~~~~~~~~~
++----------------+
 
 **RUNNING**
 
