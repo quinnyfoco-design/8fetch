@@ -56,6 +56,7 @@ Fish:
 ```bash
 fish_add_path ~/bin
 ```
+I only know the syntax of these 3, if you use another shell please lookup of what the aqveliant to these are of ur shell.
 
 
 **RUNNING**
