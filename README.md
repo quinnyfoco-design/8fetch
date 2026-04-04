@@ -27,6 +27,37 @@ gcc -O2 -o myfetch myfetch.c
 sudo install -Dm755 myfetch /usr/local/bin/8fetch
 ```
 
+If you are on a system without root(School systems or unrooted android devices):
+
+```bash
+git clone https://github.com/quinnyfoco-design/8fetch.git
+```
+```
+cd 8fetch
+```
+```
+gcc -O2 -o myfetch myfetch.c
+```
+```
+mkdir -p ~/bin
+```
+
+Please check what shell u are using(with 'echo $SHELL'):
+
+Bash: 
+```bash
+echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
+```
+Zsh:
+```bash
+echo 'export PATH="$HOME/bin:$PATH"' >> ~/.zshrc && source ~/.zshrc
+```
+Fish:
+```bash
+fish_add_path ~/bin
+```
+
+
 **RUNNING**
 
 On *all* systems:
