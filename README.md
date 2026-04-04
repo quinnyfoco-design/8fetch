@@ -41,6 +41,9 @@ gcc -O2 -o myfetch myfetch.c
 ```
 mkdir -p ~/bin
 ```
+```
+install -Dm755 myfetch ~/bin/8fetch
+```
 
 Please check what shell u are using(with 'echo $SHELL'):
 
@@ -56,7 +59,7 @@ Fish:
 ```bash
 fish_add_path ~/bin
 ```
-I only know the syntax of these 3, if you use another shell please lookup of what the aqveliant to these are of ur shell.
+I only know the syntax of these 3, if you use another shell please lookup of what the equivalent to these are of ur shell.
 
 
 **RUNNING**
