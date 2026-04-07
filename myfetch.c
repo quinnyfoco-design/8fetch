@@ -234,7 +234,6 @@ static void gather(void) {
             }
         }
 
-        /* FIX #1: Only run xrandr if DISPLAY is set */
         if (!got_res && getenv("DISPLAY")) {
             FILE *xr = popen("xrandr 2>/dev/null", "r");
             if (xr) {
