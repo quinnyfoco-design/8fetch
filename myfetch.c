@@ -423,6 +423,7 @@ static void choose_label_color(void) {
     { label_color = BLUE;      return; }
     if (!strcmp(g_distro_id,"artix"))
     { label_color = BLUE; return; }
+    if (!strcmp(g_distro_id,"fedora"))    { label_color = BLUE;      return; }
     if (!strcmp(g_distro_id,"ubuntu"))    { label_color = ORANGE;    return; }
     if (!strcmp(g_distro_id,"linuxmint")) { label_color = GREEN;     return; }
     if (!strcmp(g_distro_id,"pop"))       { label_color = TEAL;      return; }
@@ -738,6 +739,31 @@ static void build_ascii_opensuse(void) {
     ALN();
 }
 
+static void build_ascii_fedora(void) {
+    const char *b=BLUE, *r=RESET_C;
+    AL("             %s###########%s",             b,r);
+    AL("         %s###################%s",         b,r);
+    AL("      %s################....#####%s",      b,r);
+    AL("    %s##############..........**###%s",    b,r);
+    AL("   %s##############..........****###%s",   b,r);
+    AL("  %s##############....########****###%s",  b,r);
+    AL(" %s##############....*########*****###%s", b,r);
+    AL(" %s##############....#########*****###%s", b,r);
+    AL("%s###############....#########****#####%s",b,r);
+    AL("%s###############.....#####******######%s",b,r);
+    AL("%s#####*****...............*****#######%s",b,r);
+    AL("%s####******..............***##########%s",b,r);
+    AL("%s###****########....#################%s", b,r);
+    AL("%s##****#########....#################%s", b,r);
+    AL("%s##****#########....################%s",  b,r);
+    AL("%s##*****########....###############%s",   b,r);
+    AL("%s###******###+.....###############%s",    b,r);
+    AL("%s####***..........##############%s",      b,r);
+    AL("%s#######*......##############%s",         b,r);
+    AL("  %s######################%s",             b,r);
+    ALN();
+}
+
 static void build_ascii_linux(void) {
     const char *b=SBLACK, *r=RESET_C;
     AL("              %sa8888b.%s",                        b,r);
@@ -769,6 +795,7 @@ static void build_ascii(void) {
         !strcmp(id,"manjaro")    || !strcmp(id,"garuda"))
     { build_ascii_arch();     return; }
     if (!strcmp(id,"artix"))     { build_ascii_artix();    return; }
+    if (!strcmp(id,"fedora"))    { build_ascii_fedora();   return; }
     if (!strcmp(id,"ubuntu"))    { build_ascii_ubuntu();   return; }
     if (!strcmp(id,"linuxmint")) { build_ascii_mint();     return; }
     if (!strcmp(id,"pop"))       { build_ascii_pop();      return; }
