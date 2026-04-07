@@ -1,8 +1,8 @@
 /*
- * myfetch.c — C port of myfetch (neofetch-like system info tool)
+ * myfetch.c; C port of myfetch
  *
- * Compile:  gcc -O2 -o myfetch myfetch.c
- * Usage:    ./myfetch [--grey] [--color:#rrggbb]
+ * compile:  gcc -O2 -o myfetch myfetch.c
+ * usage:    ./myfetch [--grey] [--color:#rrggbb]
  */
 
 #include <stdio.h>
@@ -142,7 +142,7 @@ static size_t vis_len(const char *s) {
 }
 
 static void gather(void) {
-    /* Termux / Android detection */
+    /* Termux android detection */
     {
         const char *pfx = getenv("PREFIX");
         if (pfx && strstr(pfx, "com.termux")) {
@@ -401,7 +401,6 @@ static void gather(void) {
             }
             if (de && de[0])
                 snprintf(g_de, sizeof(g_de), "%s", de);
-            /* FIX #2: Only run xprop if DISPLAY is set */
             else if (getenv("DISPLAY")) {
                 run_cmd(
                     "xprop -id "
