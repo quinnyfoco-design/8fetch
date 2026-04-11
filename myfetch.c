@@ -904,8 +904,8 @@ int main(int argc, char *argv[]) {
             } else if (i == box_h - 1) {
                 char tmp[LINE_LEN * 3 + 32];
                 snprintf(tmp, sizeof(tmp),
-                         "%s\xe2\x95\xb0%s%s%s\xe2\x95\xaf%s",
-                         INFO_COLOR, RESET_C, border, INFO_COLOR, RESET_C);
+                         "%s\xe2\x95\xad%s\xe2\x95\xae%s",
+                         INFO_COLOR, border, RESET_C);
                 snprintf(right, sizeof(right), "%s", tmp);
             } else {
                 const char *content = info_lines[i - 1];
