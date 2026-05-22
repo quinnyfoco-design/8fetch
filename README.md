@@ -1,4 +1,5 @@
 > [!WARNNG]
+> 
 > 8fetch is not maintained anymore since it is deprecated. Please check out eightfetch instead.
 
 Hello! 8fetch is a simple info fetching script like neofetch.
