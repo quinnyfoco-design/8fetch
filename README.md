@@ -3,9 +3,9 @@
 > 8fetch is not maintained anymore since it is deprecated. Please check out eightfetch instead.
 
 Hello! 8fetch is a simple info fetching script like neofetch.
-This was created by @germanphoneguy and if you have any problems
+This was created by @germanphoneguy ~~and if you have any problems
 w/ 8fetch, improvements or distro requests i'd love to be contacted
-on tiktok instead of here.
+on tiktok instead of here.~~
 
 
 **INSTALLATION**
