@@ -1,6 +1,6 @@
 > [!WARNNG]
 > 
-> 8fetch is not maintained anymore since it is deprecated. Please check out (eightfetch)[https://github.com/germanphoneguy/eightfetch] instead.
+> 8fetch is not maintained anymore since it is deprecated. Please check out [eightfetch](https://github.com/germanphoneguy/eightfetch) instead.
 
 Hello! 8fetch is a simple info fetching script like neofetch.
 This was created by @germanphoneguy ~~and if you have any problems
